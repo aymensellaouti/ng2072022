@@ -1,0 +1,17 @@
+<div class="alert alert-primary">
+  <p
+    [hidden]="isHidden"
+    (click)="changeColor()"
+    [style.color]="color"
+  >La couleur de mon texte est {{color}}</p>
+  <input type="text" #monInput>
+  <button (mouseenter)="showHide(monInput)">Show / Hide</button>
+  <!-- a("monlien", "__blank") -->
+  <app-second></app-second>
+</div>
+
+<!--
+  Qu'est ce qui se passe et qu'est ce qu'on trouve
+  balise => attribut (etat)
+  evenemenets
+ -->
