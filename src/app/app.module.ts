@@ -18,6 +18,7 @@ import { CvCardComponent } from './cv/cv-card/cv-card.component';
 import { MiniWordComponent } from './directives/mini-word/mini-word.component';
 import { NgclassComponent } from './directives/ngclass/ngclass.component';
 import { HighlightDirective } from './directives/highlight.directive';
+import { LoggerService } from './services/logger.service';
 
 @NgModule({
   declarations: [
@@ -35,14 +36,10 @@ import { HighlightDirective } from './directives/highlight.directive';
     CvCardComponent,
     MiniWordComponent,
     NgclassComponent,
-    HighlightDirective
+    HighlightDirective,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    FormsModule
-  ],
+  imports: [BrowserModule, AppRoutingModule, FormsModule],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

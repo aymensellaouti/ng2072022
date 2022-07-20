@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Cv } from '../model/cv';
+import { LoggerService } from '../../services/logger.service';
+import { SayHelloService } from '../../services/say-hello.service';
 
 @Component({
   selector: 'app-cv',
@@ -9,9 +11,14 @@ import { Cv } from '../model/cv';
 export class CvComponent implements OnInit {
   cvs: Cv[] = [];
   selectedCv: Cv | null = null;
-  constructor() {}
+  constructor(
+    private logger: LoggerService,
+    private sayHello: SayHelloService
+  ) {}
 
   ngOnInit(): void {
+    this.sayHello.hello();
+    this.logger.log('cc je suis le cv component');
     this.cvs = [
       new Cv(
         1,
