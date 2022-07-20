@@ -1,0 +1,15 @@
+<div
+  appHighlight
+  *ngIf="!eteinte"
+  (click)="interupteur()"
+  [ngClass]="{
+    eteinte: eteinte,
+    allume: !eteinte
+  }"
+>
+  ampoule
+</div>
+
+<button (click)="interupteur()">interupteur</button>
+
+<p [in]="'gold'" [out]="'silver'" appHighlight>test directive</p>

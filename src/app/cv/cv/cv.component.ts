@@ -40,6 +40,15 @@ export class CvComponent implements OnInit {
         '12345',
         18
       ),
+      new Cv(
+        4,
+        'Livier',
+        'Amaury',
+        'chef de projet',
+        'rotating_card_profile3.png',
+        '12345',
+        18
+      ),
     ];
   }
   getSelectedItem(cv: Cv) {
