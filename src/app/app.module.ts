@@ -28,6 +28,8 @@ import { HeaderComponent } from './components/header/header.component';
 import { CvDetailComponent } from './cv/cv-detail/cv-detail.component';
 import { AddDetailComponent } from './cv/add-detail/add-detail.component';
 import { NF404Component } from './components/nf404/nf404.component';
+import { TestFormComponent } from './components/test-form/test-form.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -52,6 +54,8 @@ import { NF404Component } from './components/nf404/nf404.component';
     CvDetailComponent,
     AddDetailComponent,
     NF404Component,
+    TestFormComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,

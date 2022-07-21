@@ -1,0 +1,13 @@
+<form #monForm="ngForm">
+  name :
+  <input type="text" ngModel required name="name" class="form-control" /> age :
+  <input
+    type="text"
+    required
+    pattern="[01]?\d{1,2}"
+    ngModel
+    name="age"
+    class="form-control"
+  />
+  <button (click)="processForm(monForm)" class="btn btn-dark">porcess</button>
+</form>

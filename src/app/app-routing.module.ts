@@ -9,11 +9,13 @@ import { SecondComponent } from './components/second.component';
 import { CvDetailComponent } from './cv/cv-detail/cv-detail.component';
 import { AddDetailComponent } from './cv/add-detail/add-detail.component';
 import { NF404Component } from './components/nf404/nf404.component';
+import { LoginComponent } from './login/login.component';
 /* todo */
 const routes: Routes = [
   { path: '', component: FirstComponent },
   { path: 'todo', component: TodoComponent },
   { path: 'cv', component: CvComponent },
+  { path: 'login', component: LoginComponent },
   { path: 'cv/add', component: AddDetailComponent },
   { path: 'cv/:id', component: CvDetailComponent },
   { path: 'word', component: MiniWordComponent },
