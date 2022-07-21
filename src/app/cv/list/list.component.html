@@ -6,7 +6,7 @@
     }"
     *ngFor="let actualCv of cvs; let odd = odd"
     class="list-group-item"
-  >
-    <app-item (selectItem)="forwardCv($event)" [cv]="actualCv"></app-item>
+  ><!-- (selectItem)="forwardCv($event)" -->
+    <app-item  [cv]="actualCv"></app-item>
   </li>
 </ol>

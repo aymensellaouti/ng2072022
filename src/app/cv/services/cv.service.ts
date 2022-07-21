@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Subject } from 'rxjs';
 import { Cv } from '../model/cv';
 
 @Injectable({
@@ -6,6 +7,8 @@ import { Cv } from '../model/cv';
 })
 export class CvService {
   private cvs: Cv[] = [];
+  private selectCvSubject = new Subject<Cv>();
+  selectCvObservable$ = this.selectCvSubject.asObservable();
   constructor() {
     this.cvs = [
       new Cv(
@@ -52,5 +55,9 @@ export class CvService {
   }
   getCvById(id: number): Cv | null {
     return this.cvs.find((actualCv) => actualCv.id == id) ?? null;
+  }
+  // Brodcaster l'info de selection du cv à tous les observateurs
+  selectCv(cv: Cv) {
+    this.selectCvSubject.next(cv);
   }
 }

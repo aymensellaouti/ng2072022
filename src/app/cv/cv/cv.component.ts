@@ -4,6 +4,7 @@ import { LoggerService } from '../../services/logger.service';
 import { SayHelloService } from '../../services/say-hello.service';
 import { TodoService } from '../../todo/service/todo.service';
 import { CvService } from '../services/cv.service';
+import { distinctUntilChanged } from 'rxjs';
 
 @Component({
   selector: 'app-cv',
@@ -12,7 +13,8 @@ import { CvService } from '../services/cv.service';
 })
 export class CvComponent implements OnInit {
   cvs: Cv[] = [];
-  selectedCv: Cv | null = null;
+  nb = 0;
+  /*   selectedCv: Cv | null = null; */
   constructor(
     private logger: LoggerService,
     private sayHello: SayHelloService,
@@ -22,11 +24,14 @@ export class CvComponent implements OnInit {
 
   ngOnInit(): void {
     this.sayHello.hello();
+    this.cvService.selectCvObservable$
+      .pipe(distinctUntilChanged())
+      .subscribe(() => this.nb++);
     this.logger.log('cc je suis le cv component');
     this.cvs = this.cvService.getCvs();
   }
   getSelectedItem(cv: Cv) {
-    this.selectedCv = cv;
+    /*     this.selectedCv = cv; */
     this.todoService.logTodos();
   }
 }
