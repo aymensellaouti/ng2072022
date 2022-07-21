@@ -1,8 +1,10 @@
 <div (click)="selectCv()">
   <img
     src="assets/images/{{ cv?.path }}"
-    width="50"
-    height="50"
+    [ngStyle]="{
+      width: size + 'px',
+      height: size + 'px'
+    }"
     class="rounded-circle"
   />
   {{ cv?.firstname }} {{ cv?.name }}
