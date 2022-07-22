@@ -1,15 +1,17 @@
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { Cv } from '../model/cv';
+import { HttpClient } from '@angular/common/http';
+import { APIS } from '../../config/api.config';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class CvService {
   private cvs: Cv[] = [];
   private selectCvSubject = new Subject<Cv>();
   selectCvObservable$ = this.selectCvSubject.asObservable();
-  constructor() {
+  constructor(private http: HttpClient) {
     this.cvs = [
       new Cv(
         1,
@@ -50,11 +52,20 @@ export class CvService {
     ];
   }
 
-  getCvs(): Cv[] {
+  getFakeCvs(): Cv[] {
     return this.cvs;
   }
-  getCvById(id: number): Cv | null {
+  getCvs(): Observable<Cv[]> {
+    return this.http.get<Cv[]>(APIS.cv);
+  }
+  getFakeCvById(id: number): Cv | null {
     return this.cvs.find((actualCv) => actualCv.id == id) ?? null;
+  }
+  getCvById(id: number): Observable<Cv> {
+    return this.http.get<Cv>(APIS.cv + id);
+  }
+  deleteCvById(id: number): Observable<Cv> {
+    return this.http.delete<Cv>(APIS.cv + id);
   }
   // Brodcaster l'info de selection du cv à tous les observateurs
   selectCv(cv: Cv) {

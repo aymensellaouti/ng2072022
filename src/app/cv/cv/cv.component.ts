@@ -5,6 +5,7 @@ import { SayHelloService } from '../../services/say-hello.service';
 import { TodoService } from '../../todo/service/todo.service';
 import { CvService } from '../services/cv.service';
 import { distinctUntilChanged } from 'rxjs';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-cv',
@@ -19,7 +20,8 @@ export class CvComponent implements OnInit {
     private logger: LoggerService,
     private sayHello: SayHelloService,
     private todoService: TodoService,
-    private cvService: CvService
+    private cvService: CvService,
+    private toastr: ToastrService
   ) {}
 
   ngOnInit(): void {
@@ -28,7 +30,16 @@ export class CvComponent implements OnInit {
       .pipe(distinctUntilChanged())
       .subscribe(() => this.nb++);
     this.logger.log('cc je suis le cv component');
-    this.cvs = this.cvService.getCvs();
+    this.cvService.getCvs().subscribe({
+      next: (cvs) => {
+        this.cvs = cvs;
+      },
+      error: (error) => {
+        console.log(error);
+        this.cvs = this.cvService.getFakeCvs();
+        this.toastr.error('Les données sont fake. Problème avec l api veuillez contacter l admin.')
+      },
+    });
   }
   getSelectedItem(cv: Cv) {
     /*     this.selectedCv = cv; */
